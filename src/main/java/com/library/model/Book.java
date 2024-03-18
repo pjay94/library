@@ -27,6 +27,9 @@ public class Book {
         this.availability = availability;
     }
 
+    public Book() {
+    }
+
     public String getTitle() {
         return title;
     }
