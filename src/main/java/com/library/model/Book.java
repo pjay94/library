@@ -1,22 +1,22 @@
 package com.library.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import jakarta.persistence.*;
+
 import java.util.Date;
 
 @Entity
+@Table(name = "books")
 public class Book {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    private Long id;
     private String title;
     private String author;
     private Date publishingDate;
     private Genre genre;
     private String description;
     private boolean availability;
+    private String isbn;
 
     public Book(String title, String author, Date publishingDate, Genre genre, String description, boolean availability) {
         this.title = title;
