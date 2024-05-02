@@ -23,10 +23,21 @@ public class BookService {
     public List<Book> findAllBooks() {
         return bookRepository.findAll();
     }
-//
-//    public void saveBook(Book book){
-//        bookRepository.save(book);
-//    }
-//
+
+    public List<Book> findBooksByAvailability(boolean availability){
+        return bookRepository.findByAvailability(availability);
+    }
+
+    public List<Book> findBookByTitle(String title){
+        return bookRepository.findByTitle(title);
+    }
+
+    public List<Book> findAvailableBookByTitle(String title){
+        return bookRepository.findByAvailabilityAndTitle(true, title);
+    }
+
+    public List<Book> findByIsbn(String isbn){
+        return bookRepository.findByIsbn(isbn);
+    }
 
 }
