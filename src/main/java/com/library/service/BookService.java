@@ -1,10 +1,13 @@
 package com.library.service;
 
 import com.library.model.Book;
+import com.library.model.Genre;
 import com.library.repository.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -52,7 +55,25 @@ public class BookService {
         bookRepository.deleteById(id);
     }
 
+    @Transactional
     public void deleteBookByTitle(String title){
         bookRepository.deleteByTitle(title);
+    }
+
+    public Book updateBook(Long id, Book bookFromRequest) {
+        Book book = bookRepository.findById(id).orElseThrow(() -> new RuntimeException("Book not found."));
+        String title = bookFromRequest.getTitle();
+        if (title != null) book.setTitle(title);
+        String author = bookFromRequest.getAuthor();
+        if (author != null) book.setAuthor(author);
+        Date publishingDate = bookFromRequest.getPublishingDate();
+        if (publishingDate != null) book.setPublishingDate(publishingDate);
+        Genre genre = bookFromRequest.getGenre();
+        if (genre != null) book.setGenre(genre);
+        String description = bookFromRequest.getDescription();
+        if (description != null) book.setDescription(description);
+        book.setAvailability(bookFromRequest.isAvailability());
+
+        return bookRepository.save(book);
     }
 }

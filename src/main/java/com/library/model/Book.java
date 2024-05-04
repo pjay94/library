@@ -13,6 +13,8 @@ public class Book {
     private String title;
     private String author;
     private Date publishingDate;
+    @ManyToOne
+    @JoinColumn(name = "genre_id")
     private Genre genre;
     private String description;
     private boolean availability;
@@ -52,5 +54,33 @@ public class Book {
 
     public boolean isAvailability() {
         return availability;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
+    }
+
+    public void setPublishingDate(Date publishingDate) {
+        this.publishingDate = publishingDate;
+    }
+
+    public void setGenre(Genre genre) {
+        this.genre = genre;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setAvailability(boolean availability) {
+        this.availability = availability;
+    }
+
+    public void setIsbn(String isbn) {
+        this.isbn = isbn;
     }
 }
