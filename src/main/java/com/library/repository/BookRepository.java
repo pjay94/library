@@ -22,5 +22,14 @@ public interface BookRepository extends JpaRepository<Book, Long> {
 
     List<Book> findByIsbn(String isbn);
 
-//    List<Book>
+    @Override
+    <S extends Book> S save(S entity);
+
+    @Override
+    void delete(Book entity);
+
+    @Override
+    void deleteById(Long aLong);
+
+    void deleteByTitle(String title);
 }

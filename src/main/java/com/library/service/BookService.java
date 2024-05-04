@@ -24,7 +24,7 @@ public class BookService {
         return bookRepository.findAll();
     }
 
-    public List<Book> findBooksByAvailability(boolean availability){
+    public List<Book> findAvailableBooks(boolean availability){
         return bookRepository.findByAvailability(availability);
     }
 
@@ -36,8 +36,23 @@ public class BookService {
         return bookRepository.findByAvailabilityAndTitle(true, title);
     }
 
-    public List<Book> findByIsbn(String isbn){
+    public List<Book> findBookByIsbn(String isbn){
         return bookRepository.findByIsbn(isbn);
     }
 
+    public Book saveBook(Book entity){
+        return bookRepository.save(entity);
+    }
+
+    public void deleteBook(Book entity){
+        bookRepository.delete(entity);
+    }
+
+    public void deleteBookById(Long id){
+        bookRepository.deleteById(id);
+    }
+
+    public void deleteBookByTitle(String title){
+        bookRepository.deleteByTitle(title);
+    }
 }

@@ -3,13 +3,12 @@ package com.library.controller;
 import com.library.model.Book;
 import com.library.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
+//@RequestMapping("/books")
 public class BookController {
     private BookService bookService;
 
@@ -30,27 +29,46 @@ public class BookController {
 
     @GetMapping("/books/available")
     public List<Book> getAvailableBooks(){
-        return bookService.findBooksByAvailability(true);
+        return bookService.findAvailableBooks(true);
     }
 
     @GetMapping("/books/unavailable")
     public List<Book> getUnavailableBooks(){
-        return bookService.findBooksByAvailability(false);
+        return bookService.findAvailableBooks(false);
     }
 
-    @GetMapping("/books/title")
+    @GetMapping("/books/availableTitle")
+    public List<Book> findAvailableBookByTitle(@RequestParam(value = "title")/*not needed*/ String title){
+        return bookService.findAvailableBookByTitle(title);
+    }
+
+    @GetMapping("/books/search")
     public List<Book> findBookByTitle(@RequestParam String title){
         return bookService.findBookByTitle(title);
     }
 
-    @GetMapping("/books/availableTitle")
-    public List<Book> findAvailableBookByTitle(@RequestParam(value = "title") String title){
-        return bookService.findAvailableBookByTitle(title);
-    }
-
     @GetMapping("/books/isbn")
     public List<Book> findByIsbn(@RequestParam String isbn){
-        return bookService.findByIsbn(isbn);
+        return bookService.findBookByIsbn(isbn);
     }
 
+    @PostMapping("/books")
+    public Book addBook(@RequestBody Book book){
+        return bookService.saveBook(book);
+    }
+
+    @DeleteMapping("/books")
+    public void deleteBook(@RequestBody Book book){
+        bookService.deleteBook(book);
+    }
+
+    @DeleteMapping("/books/{id}")
+    public void deleteBookById(@PathVariable Long id){
+        bookService.deleteBookById(id);
+    }
+
+    @DeleteMapping("/books/title")
+    public void deleteBookByTitle(@RequestParam(value = "title") String title){
+        bookService.deleteBookByTitle(title);
+    }
 }
