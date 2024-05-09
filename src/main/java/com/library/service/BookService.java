@@ -66,8 +66,8 @@ public class BookService {
         if (title != null) book.setTitle(title);
         String author = bookFromRequest.getAuthor();
         if (author != null) book.setAuthor(author);
-        Date publishingDate = bookFromRequest.getPublishingDate();
-        if (publishingDate != null) book.setPublishingDate(publishingDate);
+        String publishingYear = bookFromRequest.getPublishingYear();
+        if (publishingYear != null) book.setPublishingYear(publishingYear);
         Genre genre = bookFromRequest.getGenre();
         if (genre != null) book.setGenre(genre);
         String description = bookFromRequest.getDescription();

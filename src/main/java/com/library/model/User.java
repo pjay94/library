@@ -1,24 +1,42 @@
 package com.library.model;
 
+import jakarta.persistence.*;
+
 import java.util.Date;
 
+@Entity
+@Table(name = "users")
 public class User {
-    private String nickname;
-    private String password;
-    private String address;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private String username;
+    private String password; //TODO encryption
+    private String city;
     private String phoneNumber;
     private Date creationDate;
+    @Enumerated(EnumType.STRING)
+    private Role role;
 
-    public String getNickname() {
-        return nickname;
+    public User(String nickname, String password, String city, String phoneNumber, Date creationDate, Role role) {
+        this.username = nickname;
+        this.password = password;
+        this.city = city;
+        this.phoneNumber = phoneNumber;
+        this.creationDate = creationDate;
+        this.role = role;
+    }
+
+    public String getUsername() {
+        return username;
     }
 
     public String getPassword() {
         return password;
     }
 
-    public String getAddress() {
-        return address;
+    public String getCity() {
+        return city;
     }
 
     public String getPhoneNumber() {
@@ -29,11 +47,5 @@ public class User {
         return creationDate;
     }
 
-    public User(String nickname, String password, String address, String phoneNumber, Date creationDate) {
-        this.nickname = nickname;
-        this.password = password;
-        this.address = address;
-        this.phoneNumber = phoneNumber;
-        this.creationDate = creationDate;
-    }
+
 }

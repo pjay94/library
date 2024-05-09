@@ -12,7 +12,7 @@ public class Book {
     private Long id;
     private String title;
     private String author;
-    private Date publishingDate;
+    private String publishingYear;
     @ManyToOne
     @JoinColumn(name = "genre_id")
     private Genre genre;
@@ -20,10 +20,10 @@ public class Book {
     private boolean availability;
     private String isbn;
 
-    public Book(String title, String author, Date publishingDate, Genre genre, String description, boolean availability) {
+    public Book(String title, String author, String publishingYear, Genre genre, String description, boolean availability) {
         this.title = title;
         this.author = author;
-        this.publishingDate = publishingDate;
+        this.publishingYear = publishingYear;
         this.genre = genre;
         this.description = description;
         this.availability = availability;
@@ -40,8 +40,8 @@ public class Book {
         return author;
     }
 
-    public Date getPublishingDate() {
-        return publishingDate;
+    public String getPublishingYear() {
+        return publishingYear;
     }
 
     public Genre getGenre() {
@@ -64,8 +64,8 @@ public class Book {
         this.author = author;
     }
 
-    public void setPublishingDate(Date publishingDate) {
-        this.publishingDate = publishingDate;
+    public void setPublishingYear(String publishingYear) {
+        this.publishingYear = publishingYear;
     }
 
     public void setGenre(Genre genre) {
